@@ -11,7 +11,7 @@ function parseOrigins(value) {
 
 export const env = {
   nodeEnv: process.env.NODE_ENV || "development",
-  port: Number(process.env.PORT || 5001),
+  port: Number(process.env.PORT || process.env.port || 5001),
   mongoUri:
     process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/best-day-scheduler",
   allowedOrigins: parseOrigins(process.env.ALLOWED_ORIGINS || "http://localhost:5173"),
