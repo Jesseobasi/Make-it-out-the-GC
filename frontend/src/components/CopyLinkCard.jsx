@@ -16,17 +16,17 @@ export default function CopyLinkCard({ title, description, url }) {
 
   return (
     <div className="panel p-5 sm:p-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-dark-muted">
         {title}
       </p>
-      <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
-      <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700">
+      <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-dark-muted">{description}</p>
+      <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700 dark:border-dark-border dark:bg-dark-surface dark:text-dark-text">
         <p className="break-all">{url}</p>
       </div>
       <button type="button" onClick={handleCopy} className="btn-secondary mt-4 w-full">
         Copy link
       </button>
-      <p className="mt-3 text-xs font-medium text-slate-500">
+      <p className="mt-3 text-xs font-medium text-slate-500 dark:text-dark-muted">
         {status === "copied" ? "Link copied." : status === "error" ? "Copy failed." : "Share this short link with your group."}
       </p>
     </div>

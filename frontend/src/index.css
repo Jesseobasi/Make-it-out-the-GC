@@ -8,6 +8,11 @@
     background: #f8fafc;
   }
 
+  .dark {
+    color: #f1f5f9;
+    background: #0f172a;
+  }
+
   * {
     @apply box-border;
   }
@@ -16,10 +21,20 @@
     @apply min-h-screen bg-aurora font-sans text-slate-900 antialiased;
   }
 
+  .dark body {
+    @apply bg-aurora-dark text-dark-text;
+  }
+
   h1,
   h2,
   h3 {
     @apply font-display tracking-tight text-ink;
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3 {
+    @apply text-dark-text;
   }
 }
 
@@ -28,8 +43,16 @@
     @apply rounded-[28px] border border-white/70 bg-white/85 shadow-cloud backdrop-blur;
   }
 
+  .dark .panel {
+    @apply bg-dark-surface/85 border-dark-border;
+  }
+
   .input {
     @apply w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 outline-none transition focus:border-tide focus:ring-4 focus:ring-tide/10;
+  }
+
+  .dark .input {
+    @apply border-dark-border bg-dark-surface text-dark-text;
   }
 
   .btn-primary {
@@ -38,6 +61,10 @@
 
   .btn-secondary {
     @apply inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-200;
+  }
+
+  .dark .btn-secondary {
+    @apply border-dark-border bg-dark-surface text-dark-text hover:bg-dark-border;
   }
 }
 

@@ -2,7 +2,7 @@ import { formatDate } from "../utils/dates.js";
 
 function getHeatClasses(score, participantCount) {
   if (participantCount === 0) {
-    return "bg-slate-100 text-slate-500";
+    return "bg-slate-100 text-slate-500 dark:bg-dark-surface dark:text-dark-muted";
   }
 
   const ratio = score / participantCount;
@@ -12,18 +12,18 @@ function getHeatClasses(score, participantCount) {
   }
 
   if (ratio >= 0.65) {
-    return "bg-emerald-400 text-emerald-950";
+    return "bg-emerald-400 text-emerald-950 dark:bg-emerald-500 dark:text-white";
   }
 
   if (ratio >= 0.4) {
-    return "bg-mellow text-amber-950";
+    return "bg-mellow text-amber-950 dark:bg-amber-500 dark:text-amber-950";
   }
 
   if (ratio > 0) {
-    return "bg-orange-200 text-orange-950";
+    return "bg-orange-200 text-orange-950 dark:bg-orange-400 dark:text-orange-950";
   }
 
-  return "bg-slate-100 text-slate-500";
+  return "bg-slate-100 text-slate-500 dark:bg-dark-surface dark:text-dark-muted";
 }
 
 export default function HeatmapGrid({ days, participantCount }) {
