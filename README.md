@@ -4,7 +4,7 @@ Make it out the Group Chat is a production-ready, mobile-first scheduling tool f
 
 ## Active Structure
 
-```text.
+```text
 make-it-out-the-group-chat/
   backend/
     src/
@@ -22,6 +22,7 @@ make-it-out-the-group-chat/
       services/
       utils/
 ```
+
 
 The active application lives in `backend/` and `frontend/`.
 
