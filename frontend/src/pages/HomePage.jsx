@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import AppShell from "../components/AppShell.jsx";
 import CopyLinkCard from "../components/CopyLinkCard.jsx";
@@ -20,6 +21,10 @@ export default function HomePage() {
     title: "",
     startDate: today,
     endDate: oneWeekOut,
+    startTime: "",
+    endTime: "",
+    timezone: getBrowserTimezone(),
+    expectedParticipants: "",
   });
   const [createdEvent, setCreatedEvent] = useState(null);
   const [submitting, setSubmitting] = useState(false);
@@ -85,7 +90,13 @@ export default function HomePage() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <motion.form 
+          onSubmit={handleSubmit} 
+          className="space-y-5"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
           <label className="block">
             <span className="mb-2 block text-sm font-semibold text-slate-700 dark:text-dark-muted">
               Event title
@@ -133,16 +144,85 @@ export default function HomePage() {
             </label>
           </div>
 
+          <div className="grid gap-4 sm:grid-cols-2">
+            <label className="block">
+              <span className="mb-2 block text-sm font-semibold text-slate-700 dark:text-dark-muted">
+                Start time (optional)
+              </span>
+              <input
+                type="time"
+                className="input"
+                value={form.startTime}
+                onChange={(event) =>
+                  setForm((current) => ({ ...current, startTime: event.target.value }))
+                }
+              />
+            </label>
+
+            <label className="block">
+              <span className="mb-2 block text-sm font-semibold text-slate-700 dark:text-dark-muted">
+                End time (optional)
+              </span>
+              <input
+                type="time"
+                className="input"
+                value={form.endTime}
+                onChange={(event) =>
+                  setForm((current) => ({ ...current, endTime: event.target.value }))
+                }
+              />
+            </label>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <label className="block">
+              <span className="mb-2 block text-sm font-semibold text-slate-700 dark:text-dark-muted">
+                Timezone
+              </span>
+              <input
+                type="text"
+                className="input"
+                placeholder="America/New_York"
+                value={form.timezone}
+                onChange={(event) =>
+                  setForm((current) => ({ ...current, timezone: event.target.value }))
+                }
+              />
+            </label>
+
+            <label className="block">
+              <span className="mb-2 block text-sm font-semibold text-slate-700 dark:text-dark-muted">
+                Expected participants (optional)
+              </span>
+              <input
+                type="number"
+                min="1"
+                className="input"
+                placeholder="e.g. 10"
+                value={form.expectedParticipants}
+                onChange={(event) =>
+                  setForm((current) => ({ ...current, expectedParticipants: event.target.value }))
+                }
+              />
+            </label>
+          </div>
+
           {error ? (
             <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 dark:border-rose-800 dark:bg-rose-950 dark:text-rose-200">
               {error}
             </div>
           ) : null}
 
-          <button type="submit" className="btn-primary w-full sm:w-auto" disabled={submitting}>
+          <motion.button 
+            type="submit" 
+            className="btn-primary w-full sm:w-auto" 
+            disabled={submitting}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
             {submitting ? "Creating event..." : "Create event"}
-          </button>
-        </form>
+          </motion.button>
+        </motion.form>
       </section>
 
       {createdEvent?.event ? (

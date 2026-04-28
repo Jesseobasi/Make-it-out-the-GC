@@ -54,6 +54,22 @@ const eventSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    startTime: {
+      type: String,
+      trim: true,
+    },
+    endTime: {
+      type: String,
+      trim: true,
+    },
+    timezone: {
+      type: String,
+      trim: true,
+    },
+    expectedParticipants: {
+      type: Number,
+      min: 1,
+    },
     createdAt: {
       type: Date,
       default: Date.now,

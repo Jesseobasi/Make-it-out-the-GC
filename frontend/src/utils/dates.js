@@ -44,3 +44,56 @@ export function getBrowserTimezone() {
   return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
 }
 
+export function formatTime(timeString) {
+  if (!timeString) return "";
+  const [hours, minutes] = timeString.split(":");
+  const h = Number(hours);
+  const m = Number(minutes);
+  const ampm = h >= 12 ? "PM" : "AM";
+  const h12 = h % 12 || 12;
+  const mStr = m < 10 ? `0${m}` : m;
+  return `${h12}:${mStr} ${ampm}`;
+}
+
+export function downloadICS(event, bestDate) {
+  // bestDate is YYYY-MM-DD
+  const startDateStr = bestDate.replace(/-/g, "");
+  
+  let startStr = startDateStr;
+  let endStr = startDateStr;
+  
+  if (event.startTime && event.endTime) {
+    const sTime = event.startTime.replace(/:/g, "") + "00";
+    const eTime = event.endTime.replace(/:/g, "") + "00";
+    startStr = `${startDateStr}T${sTime}`;
+    endStr = `${startDateStr}T${eTime}`;
+  } else {
+    // All day event, add 1 day for end
+    const nextDate = new Date(bestDate);
+    nextDate.setDate(nextDate.getDate() + 1);
+    endStr = nextDate.toISOString().slice(0, 10).replace(/-/g, "");
+  }
+
+  const icsContent = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Make it out the Group Chat//EN",
+    "BEGIN:VEVENT",
+    `SUMMARY:${event.title || "Group Event"}`,
+    `DTSTART;TZID=${event.timezone || "UTC"}:${startStr}`,
+    `DTEND;TZID=${event.timezone || "UTC"}:${endStr}`,
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\r\n");
+
+  const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `${event.title ? event.title.replace(/[^a-z0-9]/gi, '_').toLowerCase() : 'event'}.ics`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+

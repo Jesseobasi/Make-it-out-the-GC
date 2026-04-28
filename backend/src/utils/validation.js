@@ -7,6 +7,10 @@ export function validateCreateEventPayload(payload) {
   const title = sanitizeText(payload.title);
   const startDate = payload.startDate;
   const endDate = payload.endDate;
+  const startTime = payload.startTime;
+  const endTime = payload.endTime;
+  const timezone = payload.timezone;
+  const expectedParticipants = payload.expectedParticipants;
 
   if (!title) {
     return "Event title is required.";
@@ -26,6 +30,25 @@ export function validateCreateEventPayload(payload) {
 
   if (listDateRange(startDate, endDate).length > MAX_RANGE_DAYS) {
     return `Date range must be ${MAX_RANGE_DAYS} days or fewer.`;
+  }
+
+  const timeRegex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+  if (startTime && !timeRegex.test(startTime)) {
+    return "Start time must be a valid HH:mm string.";
+  }
+  if (endTime && !timeRegex.test(endTime)) {
+    return "End time must be a valid HH:mm string.";
+  }
+
+  if (timezone && timezone.length > 50) {
+    return "Timezone must be 50 characters or fewer.";
+  }
+
+  if (expectedParticipants !== undefined) {
+    const num = Number(expectedParticipants);
+    if (isNaN(num) || num < 1 || !Number.isInteger(num)) {
+      return "Expected participants must be a positive integer.";
+    }
   }
 
   return null;

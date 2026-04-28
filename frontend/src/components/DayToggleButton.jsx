@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { AVAILABILITY_META, cycleAvailability } from "../utils/availability.js";
 import { formatDate } from "../utils/dates.js";
 
@@ -5,11 +6,13 @@ export default function DayToggleButton({ date, value, onChange, disabled = fals
   const meta = AVAILABILITY_META[value];
 
   return (
-    <button
+    <motion.button
       type="button"
       disabled={disabled}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.95 }}
       onClick={() => onChange(date, cycleAvailability(value))}
-      className={`flex min-h-28 flex-col items-start justify-between rounded-3xl border p-4 text-left transition duration-150 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 ${meta.className}`}
+      className={`flex min-h-28 flex-col items-start justify-between rounded-3xl border p-4 text-left transition duration-150 disabled:cursor-not-allowed disabled:opacity-60 ${meta.className}`}
     >
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] opacity-75">
@@ -25,7 +28,7 @@ export default function DayToggleButton({ date, value, onChange, disabled = fals
         </span>
         <p className="mt-2 text-xs opacity-80">{meta.label}</p>
       </div>
-    </button>
+    </motion.button>
   );
 }
 

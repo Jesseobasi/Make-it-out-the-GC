@@ -7,7 +7,7 @@ import HeatmapGrid from "../components/HeatmapGrid.jsx";
 import InfoCard from "../components/InfoCard.jsx";
 import RankedDaysList from "../components/RankedDaysList.jsx";
 import { useLiveResults } from "../hooks/useLiveResults.js";
-import { formatRange } from "../utils/dates.js";
+import { formatRange, formatTime, downloadICS } from "../utils/dates.js";
 
 export default function ResultsPage() {
   const { shortId } = useParams();
@@ -67,7 +67,16 @@ export default function ResultsPage() {
     <AppShell
       eyebrow={event.isExpired ? "Expired results" : "Live results"}
       title={event.title}
-      subtitle={`Results for ${formatRange(event.startDate, event.endDate)}.`}
+      subtitle={
+        <>
+          Results for {formatRange(event.startDate, event.endDate)}.
+          {event.startTime && event.endTime && (
+            <span className="block mt-2 font-medium text-slate-700">
+              Meeting window: {formatTime(event.startTime)} - {formatTime(event.endTime)} {event.timezone ? `(${event.timezone})` : ""}
+            </span>
+          )}
+        </>
+      }
       aside={aside}
     >
       {event.isExpired ? <ExpiredNotice expiresAt={event.expiresAt} /> : null}
@@ -99,6 +108,21 @@ export default function ResultsPage() {
                 Highest total score: {bestDay.score.toFixed(1)}. Even if nobody overlaps perfectly,
                 this is still the strongest day in the range.
               </p>
+              
+              {event.expectedParticipants ? (
+                <div className="mt-4 max-w-xl">
+                  <div className="flex justify-between text-xs font-semibold text-slate-500 mb-1">
+                    <span>Response Progress</span>
+                    <span>{results.participantCount} / {event.expectedParticipants}</span>
+                  </div>
+                  <div className="w-full bg-slate-200 rounded-full h-2.5">
+                    <div 
+                      className="bg-indigo-600 h-2.5 rounded-full transition-all duration-500" 
+                      style={{ width: `${Math.min(100, (results.participantCount / event.expectedParticipants) * 100)}%` }}
+                    ></div>
+                  </div>
+                </div>
+              ) : null}
               <div className="mt-6 flex flex-wrap gap-3">
                 <span className="rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-900">
                   ✅ {bestDay.breakdown.yes} yes
@@ -111,8 +135,15 @@ export default function ResultsPage() {
                 </span>
               </div>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link to={`/e/${shortId}`} className="btn-primary">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row flex-wrap">
+                <button
+                  type="button"
+                  onClick={() => downloadICS(event, bestDay.date)}
+                  className="btn-primary"
+                >
+                  Add to Calendar
+                </button>
+                <Link to={`/e/${shortId}`} className="btn-secondary">
                   Add or edit availability
                 </Link>
                 <Link to="/" className="btn-secondary">
