@@ -12,7 +12,7 @@ export default function AppShell({ eyebrow, title, subtitle, children, aside }) 
                   to="/"
                   className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-slate-500"
                 >
-                  Best Day Scheduler
+                  Make it out the Group Chat
                 </Link>
                 <span className="rounded-full bg-coral/10 px-3 py-1 text-xs font-semibold text-coral">
                   {eyebrow}

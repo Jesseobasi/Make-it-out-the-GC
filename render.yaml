@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: best-day-scheduler-backend
+    name: make-it-out-the-group-chat-backend
     env: node
     rootDir: backend
     plan: free

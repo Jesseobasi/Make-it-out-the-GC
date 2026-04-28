@@ -10,7 +10,7 @@ connectDatabase()
     startExpiredEventCleanupJob(env.cleanupIntervalHours);
 
     app.listen(env.port, () => {
-      console.log(`Best Day Scheduler backend listening on port ${env.port}`);
+      console.log(`Make it out the Group Chat backend listening on port ${env.port}`);
     });
   })
   .catch((error) => {

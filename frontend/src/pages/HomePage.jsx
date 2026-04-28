@@ -69,7 +69,7 @@ export default function HomePage() {
     <AppShell
       eyebrow="Create event"
       title="Find the best day without the back-and-forth."
-      subtitle="Best Day Scheduler creates a temporary public link for your group, tracks day-level availability, and ranks the strongest date automatically."
+      subtitle="Make it out the Group Chat creates a temporary public link for your group, tracks day-level availability, and ranks the strongest date automatically."
       aside={aside}
     >
       <section className="panel p-6 sm:p-8">

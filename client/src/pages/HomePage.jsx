@@ -67,7 +67,7 @@ export default function HomePage() {
     <AppShell
       eyebrow="Create event"
       title="Pick the best day without a messy group chat."
-      subtitle="Set the range once. Everyone marks each day as yes, maybe, or no. Best Day Scheduler scores the dates and highlights the strongest option."
+      subtitle="Set the range once. Everyone marks each day as yes, maybe, or no. Make it out the Group Chat scores the dates and highlights the strongest option."
       aside={aside}
     >
       <section className="panel p-6 sm:p-8">

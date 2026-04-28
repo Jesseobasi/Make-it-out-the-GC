@@ -30,7 +30,7 @@ export default function AppShell({ eyebrow, title, subtitle, children, aside }) 
                   to="/"
                   className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-slate-500 dark:bg-dark-surface dark:text-dark-muted"
                 >
-                  Best Day Scheduler
+                  Make it out the Group Chat
                 </Link>
                 <div className="flex items-center gap-3">
                   <button

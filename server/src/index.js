@@ -46,7 +46,7 @@ app.use((error, _req, res, _next) => {
 connectToDatabase()
   .then(() => {
     app.listen(config.port, () => {
-      console.log(`Best Day Scheduler API listening on port ${config.port}`);
+      console.log(`Make it out the Group Chat API listening on port ${config.port}`);
     });
   })
   .catch((error) => {

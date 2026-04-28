@@ -1,11 +1,11 @@
-# Best Day Scheduler
+# Make it out the Group Chat
 
-Best Day Scheduler is a production-ready, mobile-first scheduling tool for groups. A user creates a temporary event, shares a short public link, and friends mark each day as `yes`, `maybe`, or `no`. The app ranks the best day automatically, shows a heatmap, and expires each event after 7 days.
+Make it out the Group Chat is a production-ready, mobile-first scheduling tool for groups. A user creates a temporary event, shares a short public link, and friends mark each day as `yes`, `maybe`, or `no`. The app ranks the best day automatically, shows a heatmap, and expires each event after 7 days.
 
 ## Active Structure
 
-```text
-best-day-scheduler/
+```text.
+make-it-out-the-group-chat/
   backend/
     src/
       config/
@@ -75,7 +75,7 @@ The active application lives in `backend/` and `frontend/`.
 ### Backend
 
 - `PORT=5001`
-- `MONGODB_URI=mongodb://127.0.0.1:27017/best-day-scheduler`
+- `MONGODB_URI=mongodb://127.0.0.1:27017/make-it-out-the-group-chat`
 - `ALLOWED_ORIGINS=http://localhost:5173`
 - `CLEANUP_INTERVAL_HOURS=24`
 
@@ -107,7 +107,7 @@ In local development, the frontend also proxies `/api` to the backend through Vi
 
 1. Create a new Vercel project using the `frontend/` directory as the root.
 2. Set `VITE_API_BASE_URL` to your deployed backend URL plus `/api`.
-   Example: `https://best-day-scheduler-api.onrender.com/api`
+   Example: `https://make-it-out-the-group-chat-api.onrender.com/api`
 3. Build command: `npm run build`
 4. Output directory: `dist`
 5. `frontend/vercel.json` already includes an SPA rewrite for React Router.
