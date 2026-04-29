@@ -68,6 +68,7 @@ export async function createEvent(req, res, next) {
       endTime: req.body.endTime || undefined,
       timezone: req.body.timezone || undefined,
       expectedParticipants: req.body.expectedParticipants ? Number(req.body.expectedParticipants) : undefined,
+      ownerEmail: req.user?.email || undefined,
       createdAt: now,
       expiresAt: createExpiryDate(now),
     });
@@ -116,6 +117,7 @@ export async function submitAvailability(req, res, next) {
       name: sanitizeText(req.body.name),
       availability: req.body.availability,
       submittedAt: new Date(),
+      participantEmail: req.user?.email || undefined,
     };
 
     const existingIndex = event.responses.findIndex(

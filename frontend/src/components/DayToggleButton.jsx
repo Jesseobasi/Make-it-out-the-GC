@@ -12,13 +12,13 @@ export default function DayToggleButton({ date, value, onChange, disabled = fals
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.95 }}
       onClick={() => onChange(date, cycleAvailability(value))}
-      className={`flex min-h-28 flex-col items-start justify-between rounded-3xl border p-4 text-left transition duration-150 disabled:cursor-not-allowed disabled:opacity-60 ${meta.className}`}
+      className={`flex min-h-24 w-full touch-manipulation flex-col items-start justify-between rounded-2xl border p-3 text-left transition duration-150 disabled:cursor-not-allowed disabled:opacity-60 ${meta.className}`}
     >
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] opacity-75">
           {formatDate(date, { weekday: "short" })}
         </p>
-        <p className="mt-1 text-lg font-semibold">
+        <p className="mt-1 text-base font-semibold sm:text-lg">
           {formatDate(date, { month: "short", day: "numeric" })}
         </p>
       </div>

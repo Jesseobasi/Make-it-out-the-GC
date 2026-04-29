@@ -1,6 +1,17 @@
 {
   "rewrites": [
     {
+      "source": "/e/:shortId",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(Slackbot|Discordbot|WhatsApp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|TelegramBot).*"
+        }
+      ],
+      "destination": "/api/og?shortId=:shortId"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

@@ -20,6 +20,11 @@ const responseSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
+    participantEmail: {
+      type: String,
+      trim: true,
+      lowercase: true,
+    },
   },
   { _id: false }
 );
@@ -45,6 +50,12 @@ const eventSchema = new mongoose.Schema(
       required: true,
       trim: true,
       maxlength: 120,
+    },
+    ownerEmail: {
+      type: String,
+      trim: true,
+      lowercase: true,
+      index: true,
     },
     startDate: {
       type: String,

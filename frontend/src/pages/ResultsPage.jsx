@@ -82,7 +82,7 @@ export default function ResultsPage() {
       {event.isExpired ? <ExpiredNotice expiresAt={event.expiresAt} /> : null}
 
       {results.participantCount === 0 ? (
-        <section className="panel p-6 sm:p-8">
+        <section className="panel p-4 sm:p-6">
           <EmptyState
             title="No responses yet"
             text="Share the short link with your group. As soon as someone votes, the best day and heatmap will appear here."
@@ -99,11 +99,11 @@ export default function ResultsPage() {
       ) : (
         <>
           <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-            <div className="panel p-6 sm:p-8">
+            <div className="panel p-4 sm:p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                 Best day
               </p>
-              <h2 className="mt-3 text-4xl">{bestDay.label}</h2>
+              <h2 className="mt-3 text-3xl sm:text-4xl">{bestDay.label}</h2>
               <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600">
                 Highest total score: {bestDay.score.toFixed(1)}. Even if nobody overlaps perfectly,
                 this is still the strongest day in the range.
@@ -152,11 +152,11 @@ export default function ResultsPage() {
               </div>
             </div>
 
-            <div className="panel p-6 sm:p-8">
+            <div className="panel p-4 sm:p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                 Heatmap
               </p>
-              <h2 className="mt-2 text-3xl">Visual availability by day</h2>
+              <h2 className="mt-2 text-2xl sm:text-3xl">Visual availability by day</h2>
               <p className="mt-3 text-sm leading-6 text-slate-600">
                 Darker cells mean stronger alignment. Lighter cells show weaker group support.
               </p>
@@ -169,13 +169,13 @@ export default function ResultsPage() {
             </div>
           </section>
 
-          <section className="panel p-6 sm:p-8">
+          <section className="panel p-4 sm:p-6">
             <div className="flex items-center justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                   Ranked days
                 </p>
-                <h2 className="mt-2 text-3xl">Every date, sorted by score</h2>
+                <h2 className="mt-2 text-2xl sm:text-3xl">Every date, sorted by score</h2>
               </div>
               <span className="rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700">
                 {results.participantCount} participants

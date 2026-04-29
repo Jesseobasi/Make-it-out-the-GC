@@ -1,10 +1,14 @@
+import { getAuthToken } from "./authStore.js";
+
 const baseUrl = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
 const API_BASE_URL = baseUrl.endsWith("/api") ? baseUrl : `${baseUrl}/api`;
 
-async function request(path, options = {}) {
+export async function request(path, options = {}) {
+  const token = getAuthToken();
   const response = await fetch(`${API_BASE_URL}${path}`, {
     headers: {
       "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(options.headers || {}),
     },
     ...options,

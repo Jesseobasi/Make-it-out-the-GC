@@ -77,13 +77,13 @@ export default function HomePage() {
       subtitle="Make it out the Group Chat creates a temporary public link for your group, tracks day-level availability, and ranks the strongest date automatically."
       aside={aside}
     >
-      <section className="panel p-6 sm:p-8">
-        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+      <section className="panel p-4 sm:p-6">
+        <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-dark-muted">
               New scheduling event
             </p>
-            <h2 className="mt-2 text-3xl">Set the date window</h2>
+            <h2 className="mt-2 text-2xl sm:text-3xl">Set the date window</h2>
           </div>
           <div className="rounded-full bg-amber-100 px-4 py-2 text-xs font-semibold text-amber-900 dark:bg-amber-900 dark:text-amber-200">
             Browser timezone: {timezone}
@@ -92,7 +92,7 @@ export default function HomePage() {
 
         <motion.form 
           onSubmit={handleSubmit} 
-          className="space-y-5"
+          className="space-y-4"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
@@ -226,7 +226,7 @@ export default function HomePage() {
       </section>
 
       {createdEvent?.event ? (
-        <section className="panel p-6 sm:p-8">
+        <section className="panel p-4 sm:p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-tide">
             Event ready
           </p>

@@ -14,6 +14,7 @@ import {
   normalizeAvailabilityForSubmit,
 } from "../utils/availability.js";
 import { formatRange, formatTime, getBrowserTimezone, listDateRange } from "../utils/dates.js";
+import { setEventPageMetadata } from "../utils/metadata.js";
 
 export default function EventPage() {
   const { shortId } = useParams();
@@ -44,10 +45,16 @@ export default function EventPage() {
     });
   }, [event]);
 
+  useEffect(() => {
+    setEventPageMetadata(event);
+  }, [event]);
+
   const timezone = getBrowserTimezone();
   const shareUrl = shortId ? new URL(`/e/${shortId}`, window.location.origin).toString() : "";
   const dates = event ? listDateRange(event.startDate, event.endDate) : [];
   const isExpired = Boolean(event?.isExpired);
+  const hasEnded = Boolean(event?.endDate && event.endDate < new Date().toISOString().slice(0, 10));
+  const isReadOnly = isExpired || hasEnded;
 
   function updateDateValue(date, nextValue) {
     setSaved(false);
@@ -87,7 +94,7 @@ export default function EventPage() {
       />
       <InfoCard
         title="How voting works"
-        text="Tap each date to cycle between yes, maybe, and no. Leaving a day blank still submits it as no so every date stays rankable."
+        text="Tap each date to cycle empty -> yes -> maybe -> no. Leaving a day blank still submits it as no so every date stays rankable."
       />
     </div>
   );
@@ -118,7 +125,7 @@ export default function EventPage() {
 
   return (
     <AppShell
-      eyebrow={isExpired ? "Expired" : "Respond"}
+      eyebrow={isReadOnly ? "Read only" : "Respond"}
       title={event.title}
       subtitle={
         <>
@@ -132,13 +139,13 @@ export default function EventPage() {
       }
       aside={aside}
     >
-      <section className="panel p-6 sm:p-8">
+      <section className="panel p-4 sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
               Availability
             </p>
-            <h2 className="mt-2 text-3xl">Tap through each day</h2>
+            <h2 className="mt-2 text-2xl sm:text-3xl">Tap through each day</h2>
           </div>
           <div className="space-y-2 text-right">
             <AvailabilityLegend />
@@ -148,14 +155,19 @@ export default function EventPage() {
           </div>
         </div>
 
-        <motion.form 
+        <motion.form
           onSubmit={handleSubmit} 
-          className="mt-6 space-y-6"
+          className="mt-4 space-y-4 pb-20"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
           {isExpired ? <ExpiredNotice expiresAt={event.expiresAt} /> : null}
+          {!isExpired && hasEnded ? (
+            <div className="rounded-2xl border border-slate-300 bg-slate-50 px-3 py-2 text-sm text-slate-700 dark:border-dark-border dark:bg-dark-surface dark:text-dark-muted">
+              This event is past its end date and is now read-only.
+            </div>
+          ) : null}
 
           <label className="block">
             <span className="mb-2 block text-sm font-semibold text-slate-700">
@@ -169,19 +181,19 @@ export default function EventPage() {
                 setSaved(false);
                 setName(inputEvent.target.value);
               }}
-              disabled={isExpired}
+              disabled={isReadOnly}
               required
             />
           </label>
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
             {dates.map((date) => (
               <DayToggleButton
                 key={date}
                 date={date}
                 value={availability[date] || ""}
                 onChange={updateDateValue}
-                disabled={isExpired}
+                disabled={isReadOnly}
               />
             ))}
           </div>
@@ -198,19 +210,21 @@ export default function EventPage() {
             </div>
           ) : null}
 
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 p-3 backdrop-blur dark:border-dark-border dark:bg-dark-surface/95 sm:static sm:border-0 sm:bg-transparent sm:p-0">
+            <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 sm:flex-row">
             <motion.button
               type="submit"
-              className="btn-primary"
-              disabled={submitting || !name.trim() || isExpired}
-              whileHover={submitting || !name.trim() || isExpired ? {} : { scale: 1.02 }}
-              whileTap={submitting || !name.trim() || isExpired ? {} : { scale: 0.98 }}
+              className="btn-primary w-full sm:w-auto"
+              disabled={submitting || !name.trim() || isReadOnly}
+              whileHover={submitting || !name.trim() || isReadOnly ? {} : { scale: 1.02 }}
+              whileTap={submitting || !name.trim() || isReadOnly ? {} : { scale: 0.98 }}
             >
-              {submitting ? "Saving..." : isExpired ? "Event expired" : "Submit availability"}
+              {submitting ? "Saving..." : isReadOnly ? "Submission closed" : "Submit availability"}
             </motion.button>
-            <Link to={`/e/${shortId}/results`} className="btn-secondary">
+            <Link to={`/e/${shortId}/results`} className="btn-secondary w-full sm:w-auto">
               View live results
             </Link>
+            </div>
           </div>
         </motion.form>
       </section>
