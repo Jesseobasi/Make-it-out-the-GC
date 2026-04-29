@@ -73,32 +73,32 @@ export default function HomePage() {
   return (
     <AppShell
       eyebrow="Create event"
-      title="Find the best day without the back-and-forth."
-      subtitle="Make it out the Group Chat creates a temporary public link for your group, tracks day-level availability, and ranks the strongest date automatically."
+      title="Plan a day in under 30 seconds."
+      subtitle="Create a simple share link and let people tap availability."
       aside={aside}
     >
-      <section className="panel p-4 sm:p-6">
+      <section className="panel mx-auto w-full max-w-2xl p-4 sm:p-6">
         <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-dark-muted">
-              New scheduling event
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+              New event
             </p>
-            <h2 className="mt-2 text-2xl sm:text-3xl">Set the date window</h2>
+            <h2 className="mt-2 text-2xl sm:text-3xl">Create event</h2>
           </div>
-          <div className="rounded-full bg-amber-100 px-4 py-2 text-xs font-semibold text-amber-900 dark:bg-amber-900 dark:text-amber-200">
+          <div className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">
             Browser timezone: {timezone}
           </div>
         </div>
 
-        <motion.form 
-          onSubmit={handleSubmit} 
-          className="space-y-4"
+        <motion.form
+          onSubmit={handleSubmit}
+          className="space-y-4 pb-24 sm:pb-0"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
           <label className="block">
-            <span className="mb-2 block text-sm font-semibold text-slate-700 dark:text-dark-muted">
+            <span className="mb-2 block text-sm font-semibold text-slate-700">
               Event title
             </span>
             <input
@@ -112,9 +112,9 @@ export default function HomePage() {
             />
           </label>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-2">
             <label className="block">
-              <span className="mb-2 block text-sm font-semibold text-slate-700 dark:text-dark-muted">
+              <span className="mb-2 block text-sm font-semibold text-slate-700">
                 Start date
               </span>
               <input
@@ -129,7 +129,7 @@ export default function HomePage() {
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-sm font-semibold text-slate-700 dark:text-dark-muted">
+              <span className="mb-2 block text-sm font-semibold text-slate-700">
                 End date
               </span>
               <input
@@ -144,39 +144,44 @@ export default function HomePage() {
             </label>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <label className="block">
-              <span className="mb-2 block text-sm font-semibold text-slate-700 dark:text-dark-muted">
-                Start time (optional)
-              </span>
-              <input
-                type="time"
-                className="input"
-                value={form.startTime}
-                onChange={(event) =>
-                  setForm((current) => ({ ...current, startTime: event.target.value }))
-                }
-              />
-            </label>
+          <details className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+            <summary className="cursor-pointer text-sm font-semibold text-slate-700">
+              Advanced options
+            </summary>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              <label className="block">
+                <span className="mb-2 block text-sm font-semibold text-slate-700">
+                  Start time (optional)
+                </span>
+                <input
+                  type="time"
+                  className="input"
+                  value={form.startTime}
+                  onChange={(event) =>
+                    setForm((current) => ({ ...current, startTime: event.target.value }))
+                  }
+                />
+              </label>
 
-            <label className="block">
-              <span className="mb-2 block text-sm font-semibold text-slate-700 dark:text-dark-muted">
-                End time (optional)
-              </span>
-              <input
-                type="time"
-                className="input"
-                value={form.endTime}
-                onChange={(event) =>
-                  setForm((current) => ({ ...current, endTime: event.target.value }))
-                }
-              />
-            </label>
-          </div>
+              <label className="block">
+                <span className="mb-2 block text-sm font-semibold text-slate-700">
+                  End time (optional)
+                </span>
+                <input
+                  type="time"
+                  className="input"
+                  value={form.endTime}
+                  onChange={(event) =>
+                    setForm((current) => ({ ...current, endTime: event.target.value }))
+                  }
+                />
+              </label>
+            </div>
+          </details>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-2">
             <label className="block">
-              <span className="mb-2 block text-sm font-semibold text-slate-700 dark:text-dark-muted">
+              <span className="mb-2 block text-sm font-semibold text-slate-700">
                 Timezone
               </span>
               <input
@@ -191,7 +196,7 @@ export default function HomePage() {
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-sm font-semibold text-slate-700 dark:text-dark-muted">
+              <span className="mb-2 block text-sm font-semibold text-slate-700">
                 Expected participants (optional)
               </span>
               <input
@@ -208,20 +213,22 @@ export default function HomePage() {
           </div>
 
           {error ? (
-            <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 dark:border-rose-800 dark:bg-rose-950 dark:text-rose-200">
+            <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
               {error}
             </div>
           ) : null}
 
-          <motion.button 
-            type="submit" 
-            className="btn-primary w-full sm:w-auto" 
-            disabled={submitting}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            {submitting ? "Creating event..." : "Create event"}
-          </motion.button>
+          <div className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 p-3 backdrop-blur sm:static sm:border-0 sm:bg-transparent sm:p-0">
+            <motion.button
+              type="submit"
+              className="btn-primary w-full sm:w-auto"
+              disabled={submitting}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {submitting ? "Creating event..." : "Create event"}
+            </motion.button>
+          </div>
         </motion.form>
       </section>
 

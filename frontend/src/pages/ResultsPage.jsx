@@ -98,12 +98,15 @@ export default function ResultsPage() {
         </section>
       ) : (
         <>
-          <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+          <section className="grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
             <div className="panel p-4 sm:p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                 Best day
               </p>
               <h2 className="mt-3 text-3xl sm:text-4xl">{bestDay.label}</h2>
+              <div className="mt-3 inline-flex rounded-full bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white">
+                {bestDay.breakdown.yes} participants available
+              </div>
               <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600">
                 Highest total score: {bestDay.score.toFixed(1)}. Even if nobody overlaps perfectly,
                 this is still the strongest day in the range.
@@ -175,7 +178,7 @@ export default function ResultsPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                   Ranked days
                 </p>
-                <h2 className="mt-2 text-2xl sm:text-3xl">Every date, sorted by score</h2>
+                <h2 className="mt-2 text-2xl sm:text-3xl">Ranked day cards</h2>
               </div>
               <span className="rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700">
                 {results.participantCount} participants

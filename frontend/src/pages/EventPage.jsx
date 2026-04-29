@@ -142,7 +142,7 @@ export default function EventPage() {
       <section className="panel p-4 sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
               Availability
             </p>
             <h2 className="mt-2 text-2xl sm:text-3xl">Tap through each day</h2>
@@ -157,7 +157,7 @@ export default function EventPage() {
 
         <motion.form
           onSubmit={handleSubmit} 
-          className="mt-4 space-y-4 pb-20"
+          className="mt-4 space-y-4 pb-24"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
@@ -186,7 +186,7 @@ export default function EventPage() {
             />
           </label>
 
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
             {dates.map((date) => (
               <DayToggleButton
                 key={date}
@@ -210,8 +210,8 @@ export default function EventPage() {
             </div>
           ) : null}
 
-          <div className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 p-3 backdrop-blur dark:border-dark-border dark:bg-dark-surface/95 sm:static sm:border-0 sm:bg-transparent sm:p-0">
-            <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 sm:flex-row">
+          <div className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 p-3 backdrop-blur sm:static sm:border-0 sm:bg-transparent sm:p-0">
+            <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 sm:flex-row sm:justify-start">
             <motion.button
               type="submit"
               className="btn-primary w-full sm:w-auto"
@@ -219,7 +219,7 @@ export default function EventPage() {
               whileHover={submitting || !name.trim() || isReadOnly ? {} : { scale: 1.02 }}
               whileTap={submitting || !name.trim() || isReadOnly ? {} : { scale: 0.98 }}
             >
-              {submitting ? "Saving..." : isReadOnly ? "Submission closed" : "Submit availability"}
+              {submitting ? "Saving..." : isReadOnly ? "Submission closed" : "Submit Availability"}
             </motion.button>
             <Link to={`/e/${shortId}/results`} className="btn-secondary w-full sm:w-auto">
               View live results

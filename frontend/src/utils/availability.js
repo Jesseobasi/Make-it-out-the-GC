@@ -5,25 +5,25 @@ export const AVAILABILITY_META = {
     badge: "Tap",
     emoji: "⬜",
     label: "Tap to choose",
-    className: "border-slate-200 bg-white text-slate-500 dark:border-dark-border dark:bg-dark-surface dark:text-dark-muted",
+    className: "border-slate-200 bg-white text-slate-600",
   },
   yes: {
     badge: "Yes",
     emoji: "✅",
     label: "Available",
-    className: "border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-200",
+    className: "border-emerald-300 bg-emerald-100 text-emerald-900 shadow-[inset_0_0_0_1px_rgba(16,185,129,0.25)]",
   },
   maybe: {
     badge: "Maybe",
     emoji: "🤔",
     label: "Could work",
-    className: "border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-200",
+    className: "border-amber-300 bg-amber-100 text-amber-900",
   },
   no: {
     badge: "No",
     emoji: "❌",
     label: "Not free",
-    className: "border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-800 dark:bg-rose-950 dark:text-rose-300",
+    className: "border-slate-200 bg-slate-100 text-slate-500",
   },
 };
 

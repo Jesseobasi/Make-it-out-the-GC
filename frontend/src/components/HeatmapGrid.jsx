@@ -2,45 +2,45 @@ import { formatDate } from "../utils/dates.js";
 
 function getHeatClasses(score, participantCount) {
   if (participantCount === 0) {
-    return "bg-slate-100 text-slate-500 dark:bg-dark-surface dark:text-dark-muted";
+    return "bg-slate-100 text-slate-500";
   }
 
   const ratio = score / participantCount;
 
   if (ratio >= 0.9) {
-    return "bg-tide text-white";
+    return "bg-emerald-500 text-white";
   }
 
   if (ratio >= 0.65) {
-    return "bg-emerald-400 text-emerald-950 dark:bg-emerald-500 dark:text-white";
+    return "bg-emerald-200 text-emerald-900";
   }
 
   if (ratio >= 0.4) {
-    return "bg-mellow text-amber-950 dark:bg-amber-500 dark:text-amber-950";
+    return "bg-amber-200 text-amber-900";
   }
 
   if (ratio > 0) {
-    return "bg-orange-200 text-orange-950 dark:bg-orange-400 dark:text-orange-950";
+    return "bg-slate-200 text-slate-700";
   }
 
-  return "bg-slate-100 text-slate-500 dark:bg-dark-surface dark:text-dark-muted";
+  return "bg-slate-100 text-slate-500";
 }
 
 export default function HeatmapGrid({ days, participantCount }) {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+    <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
       {days.map((day) => (
         <div
           key={day.date}
-          className={`rounded-3xl p-4 ${getHeatClasses(day.score, participantCount)}`}
+          className={`rounded-[20px] p-3 ${getHeatClasses(day.score, participantCount)}`}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] opacity-80">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] opacity-80">
             {formatDate(day.date, { weekday: "short" })}
           </p>
-          <p className="mt-1 text-lg font-semibold">
+          <p className="mt-1 text-base font-semibold sm:text-lg">
             {formatDate(day.date, { month: "short", day: "numeric" })}
           </p>
-          <p className="mt-4 text-sm font-medium">Score {day.score.toFixed(1)}</p>
+          <p className="mt-3 text-xs font-medium">Score {day.score.toFixed(1)}</p>
         </div>
       ))}
     </div>

@@ -11,12 +11,15 @@ function EventList({ events, actionLabel }) {
   return (
     <div className="space-y-3">
       {events.map((event) => (
-        <div key={event.id} className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-dark-border dark:bg-dark-surface">
-          <p className="text-sm font-semibold">{event.title}</p>
-          <p className="mt-1 text-xs text-slate-500 dark:text-dark-muted">
+        <div key={event.id} className="rounded-[20px] border border-slate-200 bg-white p-4">
+          <p className="text-base font-semibold text-slate-900">{event.title}</p>
+          <p className="mt-1 text-sm text-slate-500">
             {formatRange(event.startDate, event.endDate)}
           </p>
-          <div className="mt-3 flex gap-2">
+          <p className="mt-2 text-xs font-medium text-slate-600">
+            {event.participantCount} participant{event.participantCount === 1 ? "" : "s"}
+          </p>
+          <div className="mt-3 flex flex-col gap-2 sm:flex-row">
             <Link to={`/e/${event.shortId}`} className="btn-secondary">
               {actionLabel}
             </Link>
