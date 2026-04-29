@@ -33,7 +33,8 @@ function buildHtml({ title, description, url }) {
 
 export default async function handler(req, res) {
   const shortId = String(req.query.shortId || "").trim();
-  const apiBase = (process.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+  const baseUrl = (process.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+  const apiBase = baseUrl.endsWith("/api") ? baseUrl : `${baseUrl}/api`;
   const eventUrl = `${req.headers["x-forwarded-proto"] || "https"}://${req.headers.host}/e/${shortId}`;
 
   if (!shortId || !apiBase) {

@@ -12,7 +12,7 @@ export default function DayToggleButton({ date, value, onChange, disabled = fals
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.97 }}
       onClick={() => onChange(date, cycleAvailability(value))}
-      className={`flex min-h-[104px] w-full touch-manipulation flex-col items-start justify-between rounded-[20px] border p-3 text-left transition-all duration-150 active:translate-y-[1px] disabled:cursor-not-allowed disabled:opacity-60 ${meta.className}`}
+      className={`flex min-h-[104px] w-full touch-manipulation flex-col items-start justify-between rounded-[20px] border p-3 text-left transition-all duration-150 active:translate-y-[1px] disabled:cursor-not-allowed disabled:opacity-60 overflow-hidden ${meta.className}`}
     >
       <div>
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] opacity-75">
@@ -22,11 +22,11 @@ export default function DayToggleButton({ date, value, onChange, disabled = fals
           {formatDate(date, { month: "short", day: "numeric" })}
         </p>
       </div>
-      <div className="w-full">
-        <span className="rounded-full bg-black/30 px-2.5 py-1 text-[11px] font-semibold">
-          {meta.emoji} {meta.badge}
+      <div className="w-full overflow-hidden">
+        <span className="inline-flex max-w-full items-center gap-1 rounded-full bg-black/30 px-2 py-1 text-[10px] sm:px-2.5 sm:text-[11px] font-semibold">
+          <span>{meta.emoji}</span> <span className="truncate">{meta.badge}</span>
         </span>
-        <p className="mt-1.5 text-[11px] opacity-80">{meta.label}</p>
+        <p className="mt-1.5 truncate text-[11px] opacity-80">{meta.label}</p>
       </div>
     </motion.button>
   );
