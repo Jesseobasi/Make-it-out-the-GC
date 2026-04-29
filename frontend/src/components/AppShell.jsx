@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 
 export default function AppShell({ eyebrow, title, subtitle, children, aside }) {
-  const { user, isAuthenticated, signOut } = useAuth();
+  const { user, isAuthenticated, signOut, authAvailable } = useAuth();
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('darkMode') === 'true' ||
@@ -44,11 +44,11 @@ export default function AppShell({ eyebrow, title, subtitle, children, aside }) 
                         Logout
                       </button>
                     </>
-                  ) : (
+                  ) : authAvailable ? (
                     <Link to="/login" className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
                       Login
                     </Link>
-                  )}
+                  ) : null}
                   <button
                     onClick={() => setDarkMode(!darkMode)}
                     className="rounded-full p-2 text-slate-500 hover:bg-slate-100"
