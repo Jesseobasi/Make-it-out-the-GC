@@ -154,3 +154,15 @@ export async function getResults(req, res, next) {
   }
 }
 
+export async function getMeta(req, res, next) {
+  try {
+    const event = await findEventOrThrow(req.params.shortId);
+
+    return res.json({
+      title: event.title,
+      description: `${event.startDate} – ${event.endDate} · Join to vote`,
+    });
+  } catch (error) {
+    return next(error);
+  }
+}

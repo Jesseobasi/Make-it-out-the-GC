@@ -19,9 +19,11 @@ function buildHtml({ title, description, url }) {
     <meta property="og:description" content="${escapeHtml(description)}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${escapeHtml(url)}" />
+    <meta property="og:image" content="${escapeHtml(url).split('/e/')[0]}/logo.png" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="${escapeHtml(title)}" />
     <meta name="twitter:description" content="${escapeHtml(description)}" />
+    <meta name="twitter:image" content="${escapeHtml(url).split('/e/')[0]}/logo.png" />
   </head>
   <body>
     <p>Open this event: <a href="${escapeHtml(url)}">${escapeHtml(url)}</a></p>
