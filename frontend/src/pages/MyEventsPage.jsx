@@ -11,12 +11,12 @@ function EventList({ events, actionLabel }) {
   return (
     <div className="space-y-3">
       {events.map((event) => (
-        <div key={event.id} className="rounded-[20px] border border-slate-200 bg-white p-4">
-          <p className="text-base font-semibold text-slate-900">{event.title}</p>
-          <p className="mt-1 text-sm text-slate-500">
+        <div key={event.id} className="rounded-[20px] border border-slate-700 bg-slate-800 p-4">
+          <p className="text-base font-semibold text-slate-100">{event.title}</p>
+          <p className="mt-1 text-sm text-slate-400">
             {formatRange(event.startDate, event.endDate)}
           </p>
-          <p className="mt-2 text-xs font-medium text-slate-600">
+          <p className="mt-2 text-xs font-medium text-slate-400">
             {event.participantCount} participant{event.participantCount === 1 ? "" : "s"}
           </p>
           <div className="mt-3 flex flex-col gap-2 sm:flex-row">
@@ -67,7 +67,7 @@ export default function MyEventsPage() {
       aside={<InfoCard title="Guests still work" text="Login is optional and never required for sharing or voting." />}
     >
       <section className="panel p-4 sm:p-6">
-        {status === "loading" ? <p className="text-sm text-slate-600">Loading your events...</p> : null}
+        {status === "loading" ? <p className="text-sm text-slate-400">Loading your events...</p> : null}
         {status === "error" ? <InfoCard title="Error" text={error} tone="danger" /> : null}
         {status === "ready" ? (
           <div className="space-y-6">

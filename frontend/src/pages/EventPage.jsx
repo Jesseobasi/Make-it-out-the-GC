@@ -131,7 +131,7 @@ export default function EventPage() {
         <>
           Choose the days that work for you between {formatRange(event.startDate, event.endDate)}.
           {event.startTime && event.endTime && (
-            <span className="block mt-2 font-medium text-slate-700">
+            <span className="block mt-2 font-medium text-slate-300">
               Meeting window: {formatTime(event.startTime)} - {formatTime(event.endTime)} {event.timezone ? `(${event.timezone})` : ""}
             </span>
           )}
@@ -142,14 +142,14 @@ export default function EventPage() {
       <section className="panel p-4 sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
               Availability
             </p>
             <h2 className="mt-2 text-2xl sm:text-3xl">Tap through each day</h2>
           </div>
           <div className="space-y-2 text-right">
             <AvailabilityLegend />
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-400">
               Displaying in {timezone}
             </p>
           </div>
@@ -164,13 +164,13 @@ export default function EventPage() {
         >
           {isExpired ? <ExpiredNotice expiresAt={event.expiresAt} /> : null}
           {!isExpired && hasEnded ? (
-            <div className="rounded-2xl border border-slate-300 bg-slate-50 px-3 py-2 text-sm text-slate-700 dark:border-dark-border dark:bg-dark-surface dark:text-dark-muted">
+            <div className="rounded-2xl border border-slate-700 bg-slate-800/50 px-3 py-2 text-sm text-slate-300 dark:border-dark-border dark:bg-dark-surface dark:text-dark-muted">
               This event is past its end date and is now read-only.
             </div>
           ) : null}
 
           <label className="block">
-            <span className="mb-2 block text-sm font-semibold text-slate-700">
+            <span className="mb-2 block text-sm font-semibold text-slate-300">
               Your name
             </span>
             <input
@@ -199,18 +199,18 @@ export default function EventPage() {
           </div>
 
           {submitError ? (
-            <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+            <div className="rounded-2xl border border-rose-900/50 bg-rose-900/20 px-4 py-3 text-sm text-rose-400">
               {submitError}
             </div>
           ) : null}
 
           {saved ? (
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+            <div className="rounded-2xl border border-emerald-900/50 bg-emerald-900/20 px-4 py-3 text-sm text-emerald-400">
               Availability saved. Submitting again with the same name will replace your earlier response.
             </div>
           ) : null}
 
-          <div className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 p-3 backdrop-blur sm:static sm:border-0 sm:bg-transparent sm:p-0">
+          <div className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-700 bg-slate-900/95 p-3 backdrop-blur sm:static sm:border-0 sm:bg-transparent sm:p-0">
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 sm:flex-row sm:justify-start">
             <motion.button
               type="submit"

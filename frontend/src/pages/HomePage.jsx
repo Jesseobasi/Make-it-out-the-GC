@@ -80,12 +80,12 @@ export default function HomePage() {
       <section className="panel mx-auto w-full max-w-2xl p-4 sm:p-6">
         <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
               New event
             </p>
             <h2 className="mt-2 text-2xl sm:text-3xl">Create event</h2>
           </div>
-          <div className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">
+          <div className="rounded-full bg-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-300">
             Browser timezone: {timezone}
           </div>
         </div>
@@ -98,7 +98,7 @@ export default function HomePage() {
           transition={{ duration: 0.3 }}
         >
           <label className="block">
-            <span className="mb-2 block text-sm font-semibold text-slate-700">
+            <span className="mb-2 block text-sm font-semibold text-slate-300">
               Event title
             </span>
             <input
@@ -114,7 +114,7 @@ export default function HomePage() {
 
           <div className="grid gap-3 sm:grid-cols-2">
             <label className="block">
-              <span className="mb-2 block text-sm font-semibold text-slate-700">
+              <span className="mb-2 block text-sm font-semibold text-slate-300">
                 Start date
               </span>
               <input
@@ -129,7 +129,7 @@ export default function HomePage() {
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-sm font-semibold text-slate-700">
+              <span className="mb-2 block text-sm font-semibold text-slate-300">
                 End date
               </span>
               <input
@@ -144,13 +144,13 @@ export default function HomePage() {
             </label>
           </div>
 
-          <details className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-            <summary className="cursor-pointer text-sm font-semibold text-slate-700">
+          <details className="rounded-2xl border border-slate-700 bg-slate-800/50 p-3">
+            <summary className="cursor-pointer text-sm font-semibold text-slate-300">
               Advanced options
             </summary>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               <label className="block">
-                <span className="mb-2 block text-sm font-semibold text-slate-700">
+                <span className="mb-2 block text-sm font-semibold text-slate-300">
                   Start time (optional)
                 </span>
                 <input
@@ -164,7 +164,7 @@ export default function HomePage() {
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-sm font-semibold text-slate-700">
+                <span className="mb-2 block text-sm font-semibold text-slate-300">
                   End time (optional)
                 </span>
                 <input
@@ -181,7 +181,7 @@ export default function HomePage() {
 
           <div className="grid gap-3 sm:grid-cols-2">
             <label className="block">
-              <span className="mb-2 block text-sm font-semibold text-slate-700">
+              <span className="mb-2 block text-sm font-semibold text-slate-300">
                 Timezone
               </span>
               <input
@@ -196,7 +196,7 @@ export default function HomePage() {
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-sm font-semibold text-slate-700">
+              <span className="mb-2 block text-sm font-semibold text-slate-300">
                 Expected participants (optional)
               </span>
               <input
@@ -218,7 +218,7 @@ export default function HomePage() {
             </div>
           ) : null}
 
-          <div className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 p-3 backdrop-blur sm:static sm:border-0 sm:bg-transparent sm:p-0">
+          <div className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-700 bg-slate-900/95 p-3 backdrop-blur sm:static sm:border-0 sm:bg-transparent sm:p-0">
             <motion.button
               type="submit"
               className="btn-primary w-full sm:w-auto"
@@ -238,10 +238,10 @@ export default function HomePage() {
             Event ready
           </p>
           <h2 className="mt-2 text-3xl">{createdEvent.event.title}</h2>
-          <p className="mt-3 text-sm text-slate-600">
+          <p className="mt-3 text-sm text-slate-400">
             {formatRange(createdEvent.event.startDate, createdEvent.event.endDate)}
           </p>
-          <p className="mt-2 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-slate-400">
             Expires on{" "}
             {formatDate(new Date(createdEvent.event.expiresAt).toISOString().slice(0, 10), {
               month: "short",

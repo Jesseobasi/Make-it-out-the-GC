@@ -23,7 +23,7 @@ export default function DayToggleButton({ date, value, onChange, disabled = fals
         </p>
       </div>
       <div className="w-full">
-        <span className="rounded-full bg-white/70 px-2.5 py-1 text-[11px] font-semibold">
+        <span className="rounded-full bg-black/30 px-2.5 py-1 text-[11px] font-semibold">
           {meta.emoji} {meta.badge}
         </span>
         <p className="mt-1.5 text-[11px] opacity-80">{meta.label}</p>

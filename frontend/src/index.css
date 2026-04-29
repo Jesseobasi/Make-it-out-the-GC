@@ -23,25 +23,25 @@
   h1,
   h2,
   h3 {
-    @apply font-display tracking-tight text-slate-900;
+    @apply font-display tracking-tight text-slate-100;
   }
 }
 
 @layer components {
   .panel {
-    @apply rounded-[20px] border border-white/80 bg-white/95 shadow-[0_14px_40px_rgba(2,6,23,0.25)] backdrop-blur;
+    @apply rounded-[20px] border border-slate-700/80 bg-slate-800/95 shadow-[0_14px_40px_rgba(2,6,23,0.5)] backdrop-blur;
   }
 
   .input {
-    @apply w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100;
+    @apply w-full rounded-2xl border border-slate-600 bg-slate-700 px-4 py-3 text-base text-slate-100 placeholder-slate-400 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20;
   }
 
   .btn-primary {
-    @apply inline-flex min-h-12 items-center justify-center rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 focus:outline-none focus:ring-4 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60;
+    @apply inline-flex min-h-12 items-center justify-center rounded-2xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/30 disabled:cursor-not-allowed disabled:opacity-60;
   }
 
   .btn-secondary {
-    @apply inline-flex min-h-12 items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-200;
+    @apply inline-flex min-h-12 items-center justify-center rounded-2xl border border-slate-600 bg-slate-800 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-slate-500 hover:bg-slate-700 focus:outline-none focus:ring-4 focus:ring-slate-700;
   }
 }
 
